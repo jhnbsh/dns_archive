@@ -64,7 +64,7 @@
   maps, social media (for communications), and government or police assistance.  Once
   edited place websites.txt in the same directory as dns_archive.py.  
   Run dns_archive from a command prompt or terminal window with: 
-  	python dns_archive.py
+  	 python dns_archive.py
 
 # Editing and/or replacing your existing host file
   The following website provide directions on how to edit the host file on your
