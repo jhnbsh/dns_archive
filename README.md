@@ -39,13 +39,13 @@
    on installing Python on your respective operating system.
 
    Windows users: As of Windows 8.1 you will need to install Python v2, then dnspython.
-   1. 1.) Download and install python from https://www.python.org/downloads/ . Note: Choose any version of Python that starts with "2", not "3".
-   1. 2.) Select all default settings, except for on the 'Customize Python'
+   1. Download and install python from https://www.python.org/downloads/ . Note: Choose any version of Python that starts with "2", not "3".
+   1. Select all default settings, except for on the 'Customize Python'
    screen click "Add python.exe to Path" and choose "Will be installed to local hard-drive".
-   1. 3.) Download dnspython from https://github.com/rthalley/dnspython
-   1. 4.) Create a folder in C: name 'dnspython' and extract the contents of the downloaded dnspython archive to C:\dnspython.
-   1. 5.) Click Start, type 'cmd', right click 'Command Prompt' and choose 'Run as administrator'
-   1. 6.) Run the following commands:
+   1. Download dnspython from https://github.com/rthalley/dnspython
+   1. Create a folder in C: name 'dnspython' and extract the contents of the downloaded dnspython archive to C:\dnspython.
+   1. Click Start, type 'cmd', right click 'Command Prompt' and choose 'Run as administrator'
+   1. Run the following commands:
 
     cd c:\dnspython
     python setup.py install
