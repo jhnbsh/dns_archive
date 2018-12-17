@@ -39,21 +39,22 @@
    on installing Python on your respective operating system.
 
    Windows users: As of Windows 8.1 you will need to install Python v2, then dnspython.
-   1.) Download and install python from https://www.python.org/downloads/
-   Note: Choose any version of Python that starts with "2", not "3".
-   2.) Select all default settings, except for on the 'Customize Python'
+   1. 1.) Download and install python from https://www.python.org/downloads/ . Note: Choose any version of Python that starts with "2", not "3".
+   1. 2.) Select all default settings, except for on the 'Customize Python'
    screen click "Add python.exe to Path" and choose "Will be installed to local hard-drive".
-   3.) Download dnspython from https://github.com/rthalley/dnspython
-   4.) Create a folder in C: name 'dnspython' and extract the contents of the downloaded dnspython archive to C:\dnspython.
-   5.) Click Start, type 'cmd', right click 'Command Prompt' and choose 'Run as administrator'
-   6.) Run the following commands:
-   	cd c:\dnspython
-	python setup.py install
+   1. 3.) Download dnspython from https://github.com/rthalley/dnspython
+   1. 4.) Create a folder in C: name 'dnspython' and extract the contents of the downloaded dnspython archive to C:\dnspython.
+   1. 5.) Click Start, type 'cmd', right click 'Command Prompt' and choose 'Run as administrator'
+   1. 6.) Run the following commands:
+
+    cd c:\dnspython
+    python setup.py install
 
    MacOS users: As of MacOs Majave you will need to first install pip, then dnspython.
    From a Terminal window type the following:
-   	sudo easy_install pip
-	sudo pip install dnspython	
+   
+    sudo easy_install pip
+    sudo pip install dnspython	
 		
    Linux users:  None, both python and dns.resolver should be natively installed.
 
@@ -63,8 +64,9 @@
   access in the event of an emergency, such as: news outlets, medical information,
   maps, social media (for communications), and government or police assistance.  Once
   edited place websites.txt in the same directory as dns_archive.py.  
-  Run dns_archive from a command prompt or terminal window with: 
-  	 python dns_archive.py
+  Run dns_archive from a command prompt or terminal window with:
+  
+    python dns_archive.py
 
 # Editing and/or replacing your existing host file
   The following website provide directions on how to edit the host file on your
