@@ -76,4 +76,8 @@
   safe so that you can revert back to it when needed.
     
    Modifying hostfiles: https://support.rackspace.com/how-to/modify-your-hosts-file/
+   
+# Planned Additions:
+* Comment out all but first entry when multiple DNS records are received (only first is read by operating system).
+* Provide user feedback (visual) as DNS queries are made.
 
