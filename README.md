@@ -1,4 +1,4 @@
-# dns_archive v1.1 Help File
+# dns_archive v1.2 Help File
 
 # Description:
   This python script generates a hostfile which can be used to access websites 
