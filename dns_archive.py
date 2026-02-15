@@ -1,13 +1,11 @@
 #!/usr/bin/python
-# Program: dns_archive v1.2
+# Program: dns_archive v1.2 (Python 2.7 compatible)
 # Description:
-# This python script generates a hostfile which can be used to access websites
-# in the event DNS is unavailable. The input is a list of websites (see websites.txt)
-# and the output is a hostfile for inclusion in your specific operating system.
-# A 30s timeout will skip websites that either timeout or no longer exist.
-# Errors and all relevant DNS exceptions will also be commented into the results.
+# Generates a hosts file from websites.txt. Uses 30s DNS timeout.
+# Timeouts / DNS failures are written as commented lines with a note.
 
 import dns.resolver
+import dns.exception
 
 # Configure resolver and timeout
 dnsResolve = dns.resolver.Resolver()
@@ -16,16 +14,22 @@ dnsResolve.timeout = 30   # per-retry timeout
 
 ### START PROGRAM ###
 
-print(
-    "\n Hello friend. \n The script is running.  Please wait. \n"
-)
+print "\n Hello friend. \n The script is running.  Please wait. \n"
 
 # Read websites from file
-with open("websites.txt", "r") as f:
-    striped_websites = [elem.strip() for elem in f if elem.strip()]
+f = open("websites.txt", "r")
+try:
+    striped_websites = []
+    for line in f:
+        line = line.strip()
+        if line:
+            striped_websites.append(line)
+finally:
+    f.close()
 
 # Open output host file
-with open("hosts.txt", "w") as my_output:
+my_output = open("hosts.txt", "w")
+try:
     my_output.write("# The contents of this file should be placed in:\n")
     my_output.write("# WINDOWS = C:\\Windows\\System32\\drivers\\etc\\hosts\n")
     my_output.write("# MACOS = /etc/hosts\n")
@@ -42,26 +46,27 @@ with open("hosts.txt", "w") as my_output:
 
             # Write each resolved IP
             for rdata in dns_grab:
-                my_output.write(f"{rdata} \t {item}\n")
+                my_output.write("%s \t %s\n" % (str(rdata), item))
 
         except dns.exception.Timeout:
             # Timed out — include as commented out entry with note
-            print(f"Timeout for {item}, skipping but recording.")
-            my_output.write(f"# TIMEOUT \t {item} (failed to resolve)\n")
+            print "Timeout for %s, skipping but recording." % item
+            my_output.write("# TIMEOUT \t %s (failed to resolve)\n" % item)
             continue
 
         except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
             # No DNS answer or domain not found — comment out
-            print(f"No DNS answer for {item}, skipping.")
-            my_output.write(f"# NOANSWER/NXDOMAIN \t {item} (failed to resolve)\n")
+            print "No DNS answer for %s, skipping." % item
+            my_output.write("# NOANSWER/NXDOMAIN \t %s (failed to resolve)\n" % item)
             continue
 
         except Exception as e:
             # Catch-all for any other lookup errors, comment out
-            print(f"Error resolving {item}: {e}")
-            my_output.write(
-                f"# ERROR \t {item} (failed: {type(e).__name__})\n"
-            )
+            print "Error resolving %s: %s" % (item, str(e))
+            my_output.write("# ERROR \t %s (failed: %s)\n" % (item, type(e).__name__))
             continue
+
+finally:
+    my_output.close()
 
 ### END PROGRAM ###
